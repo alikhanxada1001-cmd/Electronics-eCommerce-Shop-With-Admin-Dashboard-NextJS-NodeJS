@@ -1,108 +1,47 @@
-// *********************
-// Role of the component: Footer component
-// Name of the component: Footer.tsx
-// Developer: Aleksandar Kuzmanovic
-// Version: 1.0
-// Component call: <Footer />
-// Input parameters: no input parameters
-// Output: Footer component
-// *********************
-
+import Link from "next/link";
 import { navigation } from "@/lib/utils";
-import Image from "next/image";
-import React from "react";
 
 const Footer = () => {
+  const groups = [
+    { title: "Shop", items: navigation.sale },
+    { title: "About Pak-Tajarat", items: navigation.about },
+    { title: "Buying", items: navigation.buy },
+    { title: "Customer Support", items: navigation.help },
+  ];
+
   return (
-    <footer className="bg-white" aria-labelledby="footer-heading">
-      <div>
-        <h2 id="footer-heading" className="sr-only">
-          Footer
-        </h2>
-        <div className="mx-auto max-w-screen-2xl px-6 lg:px-8 pt-24 pb-14">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <Image
-              src="/logo v1.png"
-              alt="Singitronic logo"
-              width={250}
-              height={250}
-              className="h-auto w-auto"
-            />
-            <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-lg font-bold leading-6 text-blue-600">
-                    Sale
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {navigation.sale.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-black hover:text-gray-700"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-base font-bold leading-6 text-blue-600">
-                    About Us
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {navigation.about.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-black hover:text-gray-700"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-base font-bold leading-6 text-blue-600">
-                    Buying
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {navigation.buy.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-black hover:text-gray-700"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-base font-bold leading-6 text-blue-600">
-                    Support
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {navigation.help.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-black hover:text-gray-700"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+    <footer className="border-t border-slate-200 bg-slate-950 text-slate-300" aria-labelledby="footer-heading">
+      <div className="mx-auto max-w-screen-2xl px-6 py-14 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-5">
+          <div className="xl:col-span-1">
+            <Link href="/" className="inline-flex flex-col" aria-label="Pak-Tajarat home">
+              <span className="text-3xl font-extrabold tracking-tight text-white">Pak<span className="text-cyan-400">-</span>Tajarat</span>
+              <span className="mt-2 text-sm text-slate-400">Pakistan&apos;s Online Shopping Store</span>
+            </Link>
+            <p className="mt-5 max-w-xs text-sm leading-6 text-slate-400">
+              Discover everyday essentials and electronics with a convenient shopping experience across Pakistan.
+            </p>
           </div>
+
+          {groups.map((group) => (
+            <nav key={group.title} aria-label={group.title}>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-white">{group.title}</h2>
+              <ul className="mt-5 space-y-3">
+                {group.items.map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-sm text-slate-400 transition hover:text-cyan-300">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-col gap-3 border-t border-slate-800 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Pak-Tajarat. All Rights Reserved.</p>
+          <p>Developed by <span className="font-semibold text-cyan-300">AK DEV STUDIO</span>.</p>
         </div>
       </div>
     </footer>
