@@ -1,3 +1,5 @@
+export const formatPKR = (amount: number) => new Intl.NumberFormat("en-PK", { style: "currency", currency: "PKR", maximumFractionDigits: 0 }).format(Number.isFinite(amount) ? amount : 0);
+
 export const categoryMenuList = [
   {
     id: 1,
@@ -84,26 +86,20 @@ export const incentives = [
 
 export const navigation = {
   sale: [
-    { name: "Discounts", href: "#" },
-    { name: "News", href: "#" },
-    { name: "Register Discounts", href: "#" },
+    { name: "Browse Products", href: "/shop" },
+    { name: "Search Products", href: "/search" },
   ],
   about: [
-    { name: "About Singitronic", href: "#" },
-    { name: "Work With Us", href: "#" },
-    { name: "Company Profile", href: "#" },
+    { name: "Pak-Tajarat Store", href: "/shop" },
   ],
   buy: [
-    { name: "Singitronic Loyalty Card", href: "#" },
-    { name: "Terms Of Use", href: "#" },
-    { name: "Privacy Policy", href: "#" },
-    { name: "Complaints", href: "#" },
-    { name: "Partners", href: "#" },
+    { name: "Shopping Cart", href: "/cart" },
+    { name: "Checkout", href: "/checkout" },
+    { name: "Create Account", href: "/register" },
   ],
   help: [
-    { name: "Contact", href: "#" },
-    { name: "How to Buy at Singitronic", href: "#" },
-    { name: "FAQ", href: "#" },
+    { name: "Sign In", href: "/login" },
+    { name: "Browse Products", href: "/shop" },
   ],
 };
 

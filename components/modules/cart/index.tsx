@@ -4,9 +4,10 @@ import { useProductStore } from "@/app/_zustand/store";
 import toast from "react-hot-toast";
 import Image from "next/image"
 import Link from "next/link";
-import { FaCheck, FaCircleQuestion, FaClock, FaXmark } from "react-icons/fa6";
+import { FaCheck, FaClock, FaXmark } from "react-icons/fa6";
 import QuantityInputCart from "@/components/QuantityInputCart";
 import { sanitize } from "@/lib/sanitize";
+import { formatPKR } from "@/lib/utils";
 
 export const CartModule = () => {
 
@@ -62,7 +63,7 @@ export const CartModule = () => {
                         ) : null}
                       </div> */}
                     <p className="mt-1 text-sm font-medium text-gray-900">
-                      ${product.price}
+                      {formatPKR(product.price)}
                     </p>
                   </div>
 
@@ -118,55 +119,10 @@ export const CartModule = () => {
           <div className="flex items-center justify-between">
             <dt className="text-sm text-gray-600">Subtotal</dt>
             <dd className="text-sm font-medium text-gray-900">
-              ${total}
+              {formatPKR(total)}
             </dd>
           </div>
-          <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-            <dt className="flex items-center text-sm text-gray-600">
-              <span>Shipping estimate</span>
-              <a
-                href="#"
-                className="ml-2 flex-shrink-0 text-gray-400 hover:text-gray-500"
-              >
-                <span className="sr-only">
-                  Learn more about how shipping is calculated
-                </span>
-                <FaCircleQuestion
-                  className="h-5 w-5"
-                  aria-hidden="true"
-                />
-              </a>
-            </dt>
-            <dd className="text-sm font-medium text-gray-900">$5.00</dd>
-          </div>
-          <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-            <dt className="flex text-sm text-gray-600">
-              <span>Tax estimate</span>
-              <a
-                href="#"
-                className="ml-2 flex-shrink-0 text-gray-400 hover:text-gray-500"
-              >
-                <span className="sr-only">
-                  Learn more about how tax is calculated
-                </span>
-                <FaCircleQuestion
-                  className="h-5 w-5"
-                  aria-hidden="true"
-                />
-              </a>
-            </dt>
-            <dd className="text-sm font-medium text-gray-900">
-              ${total / 5}
-            </dd>
-          </div>
-          <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-            <dt className="text-base font-medium text-gray-900">
-              Order total
-            </dt>
-            <dd className="text-base font-medium text-gray-900">
-              ${total === 0 ? 0 : Math.round(total + total / 5 + 5)}
-            </dd>
-          </div>
+          <p className="border-t border-gray-200 pt-4 text-xs leading-5 text-gray-500">Delivery charges, if applicable, will be confirmed before your order is placed.</p>
         </dl>
         {products.length > 0 && (
           <div className="mt-6">

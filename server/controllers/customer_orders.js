@@ -5,8 +5,7 @@ const { createOrderUpdateNotification } = require('../utills/notificationHelpers
 
 async function createCustomerOrder(request, response) {
   try {
-    console.log("=== ORDER CREATION REQUEST ===");
-    console.log("Request body:", JSON.stringify(request.body, null, 2));
+    console.log("Order creation request received.");
     
     // Validate request body
     if (!request.body || typeof request.body !== 'object') {
@@ -19,7 +18,7 @@ async function createCustomerOrder(request, response) {
 
     // Server-side validation
     const validation = validateOrderData(request.body);
-    console.log("Validation result:", validation);
+
     
     if (!validation.isValid) {
       console.log("❌ Validation failed:", validation.errors);
@@ -30,7 +29,7 @@ async function createCustomerOrder(request, response) {
     }
 
     const validatedData = validation.validatedData;
-    console.log("✅ Validation passed, validated data:", validatedData);
+
 
     // Additional business logic validation
     if (validatedData.total < 0.01) {
@@ -61,7 +60,7 @@ async function createCustomerOrder(request, response) {
       });
     }
 
-    console.log("Creating order in database...");
+    console.log("Creating order record.");
     // Create the order with validated data
     const corder = await prisma.customer_order.create({
       data: {
@@ -82,7 +81,7 @@ async function createCustomerOrder(request, response) {
       },
     });
 
-    console.log("✅ Order created successfully:", corder);
+    console.log("Order record created.");
     console.log("Order ID:", corder.id);
 
     // Create notification for the user if they have an account
@@ -91,25 +90,25 @@ async function createCustomerOrder(request, response) {
       
       // First, try to use userId if provided (from logged-in user)
       if (request.body.userId) {
-        console.log(`🔍 Using provided userId: ${request.body.userId}`);
+
         user = await prisma.user.findUnique({
           where: { id: request.body.userId }
         });
         if (user) {
-          console.log(`✅ Found user by ID: ${user.email}`);
+
         } else {
-          console.log(`❌ User not found with ID: ${request.body.userId}`);
+
         }
       }
       
       // Fallback: search by email if no userId or user not found
       if (!user) {
-        console.log(`🔍 Searching user by email: ${validatedData.email}`);
+
         user = await prisma.user.findUnique({
           where: { email: validatedData.email }
         });
         if (user) {
-          console.log(`✅ Found user by email: ${user.email}`);
+
         }
       }
       
@@ -120,17 +119,17 @@ async function createCustomerOrder(request, response) {
           corder.id,
           validatedData.total
         );
-        console.log(`📧 Order confirmation notification sent to user: ${user.email}`);
+        console.log("Order confirmation notification created.");
       } else {
-        console.log(`ℹ️  No user account found for email: ${validatedData.email} - notification skipped`);
+
       }
     } catch (notificationError) {
-      console.error('❌ Failed to create order notification:', notificationError);
+      console.error("Order notification creation failed:", notificationError.message);
       // Don't fail the order if notification fails
     }
 
     // Log successful order creation (for monitoring)
-    console.log(`Order created successfully: ID ${corder.id}, Email: ${validatedData.email}, Total: $${validatedData.total}`);
+    console.log(`Order created successfully: ID ${corder.id}.`);
 
     const responseData = {
       id: corder.id,
@@ -138,11 +137,11 @@ async function createCustomerOrder(request, response) {
       orderNumber: corder.id
     };
     
-    console.log("Sending response:", responseData);
+
     return response.status(201).json(responseData);
 
   } catch (error) {
-    console.error("❌ Error creating order:", error);
+    console.error("Order creation failed:", error.message);
     
     // Handle specific Prisma errors
     if (error.code === 'P2002') {

@@ -13,6 +13,7 @@ import React from "react";
 import Link from "next/link";
 
 import { sanitize } from "@/lib/sanitize";
+import { formatPKR } from "@/lib/utils";
 
 const ProductItem = ({
   product,
@@ -54,7 +55,7 @@ const ProductItem = ({
             : "text-lg text-white font-semibold"
         }
       >
-        ${product.price}
+        {formatPKR(product.price)}
       </p>
 
   

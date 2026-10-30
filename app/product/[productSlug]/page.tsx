@@ -14,6 +14,7 @@ import { FaSquareFacebook } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaSquarePinterest } from "react-icons/fa6";
 import { sanitize } from "@/lib/sanitize";
+import { formatPKR } from "@/lib/utils";
 
 interface ImageItem {
   imageID: string;
@@ -71,7 +72,7 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
           <div className="flex flex-col gap-y-7 text-black max-[500px]:text-center">
         
             <h1 className="text-3xl">{sanitize(product?.title)}</h1>
-            <p className="text-xl font-semibold">${product?.price}</p>
+            <p className="text-xl font-semibold">{formatPKR(product?.price)}</p>
             <StockAvailabillity stock={94} inStock={product?.inStock} />
             <SingleProductDynamicFields product={product} />
             <div className="flex flex-col gap-y-2 max-[500px]:items-center">
