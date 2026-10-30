@@ -122,11 +122,7 @@ export const CartModule = () => {
               {formatPKR(total)}
             </dd>
           </div>
-          <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-            <dt className="text-base font-medium text-gray-900">Subtotal</dt>
-            <dd className="text-base font-semibold text-gray-900">{formatPKR(total)}</dd>
-          </div>
-          <p className="text-xs leading-5 text-gray-500">Delivery charges, if applicable, will be confirmed before your order is placed.</p>
+          <p className="border-t border-gray-200 pt-4 text-xs leading-5 text-gray-500">Delivery charges, if applicable, will be confirmed before your order is placed.</p>
         </dl>
         {products.length > 0 && (
           <div className="mt-6">
