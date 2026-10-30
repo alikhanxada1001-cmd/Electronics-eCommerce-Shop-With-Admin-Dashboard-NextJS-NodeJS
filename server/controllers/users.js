@@ -17,7 +17,7 @@ const getAllUsers = asyncHandler(async (request, response) => {
 });
 
 const createUser = asyncHandler(async (request, response) => {
-  const { email, password, role } = request.body;
+  const { email, password } = request.body;
 
   // Basic validation
   if (!email || !password) {
@@ -41,7 +41,7 @@ const createUser = asyncHandler(async (request, response) => {
     data: {
       email,
       password: hashedPassword,
-      role: role || "user",
+      role: "user",
     },
   });
   // Exclude password from response
@@ -50,7 +50,7 @@ const createUser = asyncHandler(async (request, response) => {
 
 const updateUser = asyncHandler(async (request, response) => {
   const { id } = request.params;
-  const { email, password, role } = request.body;
+  const { email, password } = request.body;
 
   if (!id) {
     throw new AppError("User ID is required", 400);
@@ -81,9 +81,8 @@ const updateUser = asyncHandler(async (request, response) => {
     }
     updateData.password = await bcrypt.hash(password, 14);
   }
-  if (role) {
-    updateData.role = role;
-  }
+  // Role changes are excluded from this public user endpoint.
+  // Privileged role assignment must use a separately protected admin workflow.
 
   const updatedUser = await prisma.user.update({
     where: {
