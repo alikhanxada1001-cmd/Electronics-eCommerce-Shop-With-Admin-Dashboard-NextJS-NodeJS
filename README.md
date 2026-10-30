@@ -1,8 +1,10 @@
-<h1>Electronics eCommerce Shop With Admin Dashboard in Next.js and Node.js</h1>
+<h1>Pak-Tajarat — Online Shopping Store for Pakistan</h1>
 
-<p><b>Electronics eCommerce shop with admin dashboard in Next.js and Node.js</b> is a <b>free eCommerce store</b> developed using Next.js, Node.js and MySQL. The application is completely built from scratch(custom design) and completely responsive.
-Singitronic is a modern online shop that specializes in selling all types of electronic products. The goal of the project is to create a modern web application <b>by following key stages in software engineering</b>. 
-Originally created by me and my friend Bojan Cesnak (@cesnak02) as part of our college exam in Software Engineering, this project has now evolved into <strong>an open-source community project</strong>. Together with the application, we created detailed <b>40 pages software engineering documentation</b>. We will describe the main parts of the documentaion in the repository description. Main resource for the software engineering documentation is the book „Razvoj aplikativnog softvera“ by Singidunum University professor Violeta Tomašević. Also, college lectures by Violeta Tomašević and Petar Kresoja helped us a lot with the implementation of the application.</p>
+<p><strong>Pak-Tajarat</strong> is a Pakistan-focused e-commerce storefront built with Next.js, React, TypeScript, Node.js, Express, Prisma, and MySQL. This repository is a customized adaptation of the open-source electronics e-commerce project originally developed by Aleksandar Kuzmanović and Bojan Cesnak. The original MIT license and copyright notice are retained in this repository.</p>
+
+<p>The Pak-Tajarat customization is in progress. Planned store configuration includes Pakistani Rupees (PKR), Pakistan-focused product and checkout content, and locally relevant payment methods. Payment gateways, delivery charges, and production database settings must be configured and tested before the store is ready to accept live orders.</p>
+
+<p><strong>Developer customization:</strong> AK DEV STUDIO.</p>
 
 <h2>More work</h2>
 <a href="https://github.com/Kuzma02/VSD-Official-Website" target="_blank">Car Parts Company Official Website in Next.js</a><br />
