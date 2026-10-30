@@ -1,3 +1,5 @@
+export const formatPKR = (amount: number) => new Intl.NumberFormat("en-PK", { style: "currency", currency: "PKR", maximumFractionDigits: 0 }).format(Number.isFinite(amount) ? amount : 0);
+
 export const categoryMenuList = [
   {
     id: 1,
@@ -89,12 +91,12 @@ export const navigation = {
     { name: "Register Discounts", href: "#" },
   ],
   about: [
-    { name: "About Singitronic", href: "#" },
+    { name: "About Pak-Tajarat", href: "#" },
     { name: "Work With Us", href: "#" },
     { name: "Company Profile", href: "#" },
   ],
   buy: [
-    { name: "Singitronic Loyalty Card", href: "#" },
+    { name: "Shopping Guide", href: "#" },
     { name: "Terms Of Use", href: "#" },
     { name: "Privacy Policy", href: "#" },
     { name: "Complaints", href: "#" },
@@ -102,7 +104,7 @@ export const navigation = {
   ],
   help: [
     { name: "Contact", href: "#" },
-    { name: "How to Buy at Singitronic", href: "#" },
+    { name: "How to Buy at Pak-Tajarat", href: "#" },
     { name: "FAQ", href: "#" },
   ],
 };
